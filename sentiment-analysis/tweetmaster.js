@@ -177,8 +177,8 @@ function getAccuracy(myGuesses) {
     for (var tweetID in classifications) {
     	if (classifications.hasOwnProperty(tweetID)) {
     		if (tweetID in myGuesses) {
-    			var correctValue = classifications.tweetID;
-    			var guessedValue = myGuesses.tweetID;
+    			var correctValue = classifications[tweetID];
+    			var guessedValue = myGuesses[tweetID];
     			if (correctValue === guessedValue) {
     				numCorrect++;
     			} else {
