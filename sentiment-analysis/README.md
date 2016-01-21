@@ -28,3 +28,9 @@ Have fun, eat snacks, hang out with everybody's favorite social good section lea
 
 ## Extensions
 Now that you can classify tweet sentiment, there are some awesome future applications! One that we thought of is building a tweetbot that responds to hateful tweets with helpful resources to constructively respond and hopefully start an educational conversation about why hating refugees is not the problem, why it's racism (why racism is bad), and the like.
+
+If you're interested in building a tweetbot, check out the [Twitter Docs](https://dev.twitter.com/rest/reference/post/statuses/update). This uses a REST API, which builds on some of the things Lawrence mentioned earlier in terms of GET and POST requests.
+
+For more information on how to make those requests in Javascript, hit up this [Codecademy Tutorial](https://www.codecademy.com/courses/javascript-beginner-en-EID4t/0/1?curriculum_id=5122e6f8b2cb8a8e97000a01)
+
+As always, feel free to hit us up with questions! If you build something dope, we'd love to feature it on the CS+Social Good GitHub :)
