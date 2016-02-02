@@ -11,10 +11,12 @@ You are going to build an app which would allow you to monitor the Doctor Networ
 [![Zoom in](./shot2.png)](# Zoomed In View)
 
 
-As a part of this workshop we are going to learn how to build an application end-to-end. We will launch a basic webserver on your machine and build the backend and the front end for the application. There are no pre-requesites for the worshop however it would be useful to read up on RESTful architecture, HTTP, Webserver, API. A basic knowledge of javascript is beneficial but not required.  
+As a part of this workshop we are going to learn how to build an application end-to-end. We will launch a basic webserver on your machine and build the backend and the front end for the application. 
 
-Once you pull this starter code. Go to the directory "HealthTap Doctover Network Coverage" and run the following command
+To get started pull this starter code. Go to the directory "HealthTap Doctover Network Coverage" and run the following command
 ```
 python -m SimpleHTTPServer 8080
 ```
-This will lunach an simple HTTP server on the port 8080. Now open up any webbrowser and go to "http://localhost:8080". If you see a page which says "This Works!" you are all set for the workshop. 
+This will launch a simple HTTP server on the port 8080. Now open up any webbrowser and go to "http://localhost:8080". If you see a page which says "This Works!" you are all set for the workshop.
+
+There are no pre-requesites for the worshop however it would be useful to read a little bit on RESTful architecture, HTTP, Webserver & API. A basic knowledge of javascript is beneficial but not required. We will be using Google Maps Javascript APIs to build most of the features in this workshop.   
