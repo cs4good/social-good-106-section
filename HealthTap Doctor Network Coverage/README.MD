@@ -1,7 +1,7 @@
 # HealthTap Doctor Network Coverage Application 
 
 ## Intro
-HealthTap is a platform for people to manage their health. One of the core features of the platform is Telemedicine. A patient can connect with a doctor over text, voice or video from anywhere and anytime. United States laws limit a doctor from seeing a patient from a state different from what they have licenses for. This single law has determined the architecture for the telemedicine feature of HealthTap. To ensure that a patient anywhere in the US can connect with a doctor anytime the Medical Experts team at HealthTap makes sure that every state where we provide service as a doctor online anytime during the day. We call it Doctor Network Coverage.
+HealthTap is a platform for people to manage their health. One of the core features of the platform is Telemedicine. A patient can connect with a doctor over text, voice or video from anywhere and anytime. United States laws limit a doctor from seeing a patient from a state different from what they have licenses for. This single law has determined the architecture for the telemedicine feature of HealthTap. To ensure that a patient anywhere in the US can connect with a doctor anytime the Medical Experts team at HealthTap makes sure that every state where we provide service as a doctor online 24/7. We call it Doctor Network Coverage.
 
 ## Your Task
 You are going to build an app which would allow you to monitor the Doctor Network Coverage for the United States. You will see a map of the United States and the number of doctors available during any given time for a state. You will be able to zoom into to the map to figure out the names of the doctors and the precise location where they are available. 
