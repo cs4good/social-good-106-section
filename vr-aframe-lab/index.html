@@ -1,0 +1,88 @@
+<!doctype HTML>
+<html>
+
+<head>
+    <script src="aframe.min.js">
+
+    </script>
+    <style>
+        .red{ color: red}
+    </style>
+</head>
+
+<body onload="OnSuccessfulLoad()">
+    <a-scene id="sceneElement">
+        <a-assets>
+            <a-entity id="container" position="0 2 -10" scale="0 0 0">
+                <a-animation attribute="scale" from="0 0 0" to="1 1 1" dur="10000" begin="breakApart"></a-animation>
+                <a-animation attribute="position" from="0 2 -10" to="0 -30 -10" dur="50000" begin="sink"></a-animation>
+            </a-entity> 
+        </a-assets>
+        <a-camera position="0 5 0">
+        <a-sky src="underwater.jpg"></a-sky>
+
+            <a-entity sound="src:ocean.mp3; autoplay:true; loop:true; volume:0.5"></a-entity>
+            <a-entity class = "red" id="can" geometry="primitive:cylinder; radius:2; height:5" position="0 2 -10" rotation="-30 30 12" material="color:#9E9F9F; roughness:0.2; metalness: 0.7; src:url(label.jpg)">
+
+                <!-- Add in animations: a "float" animation, always on, and a "scale" element, triggered on click" -->
+                <a-animation id="float" attribute="position" from="0 2 -10" to="0 -2 -10" dur="10000">
+                </a-animation>
+
+                <a-animation attribute="scale" to="0 0 0" begin="resize" dur="10000"></a-animation>
+
+            </a-entity>
+            <a-entity light="type: directional; intensity: 0.3; color: #fff" position="-1 2 1"></a-entity>
+            <a-entity light="type: ambient; color: "></a-entity>
+    </a-scene>
+    <script>
+        // Create a variable to store the A-Frame container our particles will go in
+        var entityElement = document.getElementById("container")
+        document.getElementById("sceneElement").appendChild(entityElement)
+        
+        // When we load the page, add the particles to the container to prep for our animations
+        function OnSuccessfulLoad() {
+            var i;
+            for (i = 1; i < 10; i++) {
+                var r, x, z;
+                for (r = -10; r < 10; r++) {
+                    
+                    // Create our metal particles
+                    var particleElement = document.createElement("a-entity")
+                    particleElement.setAttribute("geometry", "primitive:sphere; radius:0.1")
+                    particleElement.setAttribute("material", "color:#cccccc; roughness:0.2; metalness:0.7")
+
+                    x = Math.PI * r * Math.cos(i)
+                    z = Math.PI * r * Math.sin(i)
+
+                    particleElement.setAttribute("position", x * 1.5 + " 2 " + z * 1.5)
+
+                    
+                    entityElement.appendChild(particleElement)
+                }
+            }
+            setTimeout(function(){ShrinkCan()}, 5000)
+        }
+            
+        // The first animation will shrink the can
+        function ShrinkCan() {
+            console.log("Called ShrinkCan() with success")
+            document.querySelector("#can").emit("resize")
+            EmitParticles()
+        }
+            
+        // The second animation will create tiny particles around the camera
+        function EmitParticles() {
+
+            console.log("Called EmitParticles() with success")
+            entityElement.emit("breakApart")
+            setTimeout(function () { SinkParticles() }, 5000)
+        }
+            
+        // The third animation will sink the tiny particles
+        function SinkParticles() {
+            entityElement.emit("sink");
+        }
+    </script>
+</body>
+
+</html>
