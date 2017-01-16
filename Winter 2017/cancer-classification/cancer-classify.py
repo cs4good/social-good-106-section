@@ -9,7 +9,7 @@
 # are in the same directory as this file, cancer-classify.py and parses the csv data
 # for you.
 #
-# Your job is to implement the functions kNearestNeighbors and calculateDistance.
+# Your job is to implement the function kNearestNeighbors.
 
 import math
 import csv
@@ -65,16 +65,13 @@ def kNearestNeighbors(trainData, testData):
 
 
 # This function returns the Euclidean distance between two data instances.
-# Your job is to find the sum of the squares of distances between
+# It finds the sum of the squares of distances between
 # each legitimate data point in instance1 and instance2.
-#
-# HINT: There are CLASSIFICATION_INDEX - 1 number of legitimate data points. The
-# first data point doesn't matter.
-# TODO: Complete this function. Delete line 76 (raise ValueError) once you start coding.
 def calculateDistance(instance1, instance2):
-  # BEGIN CODE HERE (our solution is 4 lines of code, but don't feel constrained by this)
-  raise ValueError("calculateDistance not implemented.")
-  # END CODE HERE
+  distance = 0
+  for i in range(1, CLASSIFICATION_INDEX):
+    distance += (instance1[i] - instance2[i]) ** 2
+  return math.sqrt(distance)
 
 # Computes accuracy of given results list and prints results.
 # NO NEED TO MODIFY THIS FUNCTION
