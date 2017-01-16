@@ -67,6 +67,7 @@ def kNearestNeighbors(trainData, testData):
 # This function returns the Euclidean distance between two data instances.
 # It finds the sum of the squares of distances between
 # each legitimate data point in instance1 and instance2.
+# NO NEED TO MODIFY THIS FUNCTION
 def calculateDistance(instance1, instance2):
   distance = 0
   for i in range(1, CLASSIFICATION_INDEX):
