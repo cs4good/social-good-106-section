@@ -1,4 +1,4 @@
-# Cancer Diagnosis - k-Nearest Neighbors Classification
+﻿# Cancer Diagnosis - k-Nearest Neighbors Classification
 
 ## Intro
 In this workshop, we'll use the k-Nearest Neighbors clustering algorithm to classify bbreast cancer data to make diagnoses. The data consists of various indicators on breast tumor scans to classify the tumors as malignant or benign.
@@ -9,6 +9,5 @@ This data is taken from the Univeristy of Wisconsin's Breast Cancer Diagnostic S
 The features are radius, texture, perimeter, area, smoothness, compactness, concavity, concave points, symmetry, and fractal dimension or a digitized fine needle aspirate image.
 
 ## Your Task
-Using the starter code on [plnkr](http://plnkr.co/edit/tp8BSsjYzdcJ1F9jCqjU?p=preview), implement the k-Nearest Neighbors clustering.
 
-To run, open the embedded view of the webpage (a button on the top right) and open the console. There, we'll be printing out the accuracy of your clustering algorithm - feel free to print out any additional debugging information that might be helpful.
+Using the starter code in the repo, implement the k-Nearest Neighbors clustering. Instructions are detailed in ‘cancer-classify’ for you.
