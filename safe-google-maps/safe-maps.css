@@ -1,0 +1,15 @@
+#top {
+	margin: auto;
+	width: 80%;
+}
+
+#title {
+	text-align: center;
+	font-size: 20px;
+}
+
+#app {
+	margin: auto;
+	width: 80%;
+	text-align: center;
+}
