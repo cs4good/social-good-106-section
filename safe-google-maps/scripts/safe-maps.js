@@ -11,8 +11,9 @@ var origin = null;			// Starting point
 var destination = null;		// Ending point
 var waypoints = [];			// Mid-way stops
 var markers = [];			// Contains markers for all points on trip (origin, destination, and waypoints)
-var crimes = JSON.parse(crimes);	// crime data from crimes.json
-var crimeHeatMapData;				// global variable for heat map data
+var crimes = JSON.parse(crimes);		// crime data from crimes.json
+var crimeHeatMapData;					// global variable for heat map data
+var relavantCrimeDist = 0.0008;
 
 /*	Function: getHeatMapData()
  *	Iterates through crimes.json file and creates array of long, latitude points.
@@ -32,7 +33,7 @@ function initializeGoogleMap() {
 	var sanfran = new google.maps.LatLng(37.7749295, -122.4194155);
 	var myOptions = {
 		zoom: 13,
-		mapTypeId: 'satelite',
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		center: sanfran
 	}
 	return new google.maps.Map(document.getElementById("map_canvas"), myOptions);
@@ -46,8 +47,8 @@ function initializeHeatMap() {
 	var heatmap = new google.maps.visualization.HeatmapLayer({
 		data: crimeHeatMapData,
 		dissipating: false,
-		radius: 0.004,
-		opacity: 0.5
+		radius: 0.005,
+		opacity: 0.4
 	});
 	heatmap.setMap(map);
 	var gradient = ['rgba(0, 255, 255, 0)','rgba(0, 255, 255, 1)','rgba(0, 191, 255, 1)','rgba(0, 127, 255, 1)', 'rgba(0, 63, 255, 1)', 'rgba(0, 0, 255, 1)', 'rgba(0, 0, 223, 1)', 'rgba(0, 0, 191, 1)', 'rgba(0, 0, 159, 1)', 'rgba(0, 0, 127, 1)', 'rgba(63, 0, 91, 1)', 'rgba(127, 0, 63, 1)', 'rgba(191, 0, 31, 1)', 'rgba(255, 0, 0, 1)'];
@@ -121,12 +122,47 @@ function addMarker(latlng) {
 	}));    
 }
 
+/*	Function: clearMarkers()
+ *	Helper function for setting all markers to null so that we don't double-plot markers on the map.
+ *	DO NOT EDIT
+ */
+function clearMarkers() {
+	for (var i = 0; i < markers.length; i++) {
+		markers[i].setMap(null);
+	}
+}
+
+/*	Function: reset()
+ *	Called when user clicks on "Reset" button. Clears the map and all settings.
+ *	DO NOT EDIT
+ */
+function reset() {
+	clearMarkers();
+	markers = [];
+	waypoints = [];
+	origin = null;
+	destination = null;
+	directionsDisplay.setMap(null);
+	directionsDisplay.setPanel(null);
+	directionsDisplay = new google.maps.DirectionsRenderer();
+	directionsDisplay.setMap(map);
+	directionsDisplay.setPanel(document.getElementById("directionsPanel"));    
+}
+
+
+/************** 	3. Route Calculations	 ****************/
+// TODO: These functions calculate the route the user should take to get from point A to B.
+// You will need to help write code that determines the SAFEST route (fastest is already given)
+
+
 /*	Function: getSafestRoute(routes)
  *	TODO: Return safest route of the array of routes
  *	
  * 	Currently only returns the first route in the array of routes.
  */
 function getSafestRoute(routes) {
+
+	// TODO: Understand how routes is structured and return safest route
 	return routes[0];
 }
 
@@ -157,7 +193,7 @@ function calcRoute(safest) {
 		avoidTolls: true,
 		provideRouteAlternatives: true
 	};
-  
+
 	directionsService.route(request, function(response, status) {
 		if (status == google.maps.DirectionsStatus.OK) {
 			var editedResponse = response;
@@ -172,31 +208,4 @@ function calcRoute(safest) {
   	});
   
 	clearMarkers();
-}
-
-/*	Function: clearMarkers()
- *	Helper function for setting all markers to null so that we don't double-plot markers on the map.
- *	DO NOT EDIT
- */
-function clearMarkers() {
-	for (var i = 0; i < markers.length; i++) {
-		markers[i].setMap(null);
-	}
-}
-
-/*	Function: reset()
- *	Called when user clicks on "Reset" button. Clears the map and all settings.
- *	DO NOT EDIT
- */
-function reset() {
-	clearMarkers();
-	markers = [];
-	waypoints = [];
-	origin = null;
-	destination = null;
-	directionsDisplay.setMap(null);
-	directionsDisplay.setPanel(null);
-	directionsDisplay = new google.maps.DirectionsRenderer();
-	directionsDisplay.setMap(map);
-	directionsDisplay.setPanel(document.getElementById("directionsPanel"));    
 }
