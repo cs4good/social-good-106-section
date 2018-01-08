@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CS 106S - Data Visualization Tutorial</title>
+    <meta name="viewport" content="width=device-width">
+    <!-- Custom CSS (Stanford Open Policing Project) & Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link rel="stylesheet" href="style-starter.css">
+</head>
+
+<!-- Static-page specific styles -->
+<style type="text/css">
+    nav.navbar.navbar-custom {
+        background-color: #0A1612;
+    }
+    .header-spacer {
+        height: 73px;
+        background-color: #1B2930;
+        box-shadow: none;
+    }
+    body {
+        overflow-y:hidden;
+    }
+</style>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <div class="header-spacer"></div>
+    <section id="title-section" class="container-fluid">
+        <div class="row-fluid">
+            <div class="col-sm-9 col-md-8 col-md-offset-2 col-sm-offset-1">
+                <h1>CS 106S - Policing Data Visualization Tutorial</h1>
+                <p>The results of the Stanford Open Policing Project's nationwide analysis of traffic stops and searches.</p>
+            </div>
+        </div>
+    </section>
+    <section id="after-stop" class="container-fluid content-section static-section" style="padding-bottom: 0px;">
+        <div class="row-fluid">
+            <div class="col-sm-7 col-md-5 col-xs-offset-1 col-sm-offset-2 col-md-offset-4 chart-container">
+                <div class="btn-toolbar" style="text-align:center; width:100%; overflow:visible;">
+                    <div id="outcome_race_btns" class="btn-group" style="margin-left:50px;">
+                        <button id="outcome_Both_btn" type="button" class="race-btn scatter active">Both</button>
+                        <button id="outcome_Black_btn" type="button" class="race-btn scatter inactive Black">Black</button>
+                        <button id="outcome_Hispanic_btn" type="button" class="race-btn scatter inactive Hispanic">Hispanic</button>
+                    </div>
+                    <div id="outcome_states_dropdown" class="dropdown btn-group">
+                        <button class="dropdown-toggle state-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+                            value='All'>
+                        </button>
+                        <ul id="outcome_states" class="dropdown-menu" aria-labelledby="Search and Arrest states">
+                        </ul>
+                    </div>
+                </div>
+                <div id="search_rate_chart" class='chart'></div>
+                <div id="arrest_rate_chart" class='chart'></div>
+            </div>
+        </div>
+    </section>
+</body>
+<!-- jQuery Version 1.11.0 -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- D3 -->
+<script src="js/d3.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="js/jquery.easing.min.js"></script>
+
+<!-- Globals for findings visualizations -->
+<script>
+    var stateNames = {
+        "AZ": "Arizona",
+        "CA": "California",
+        "CO": "Colorado",
+        "CT": "Connecticut",
+        "FL": "Florida",
+        "IL": "Illinois",
+        "IA": "Iowa",
+        "MD": "Maryland",
+        "MA": "Massachusetts",
+        "MI": "Michigan",
+        "MS": "Mississippi",
+        "MO": "Missouri",
+        "MT": "Montana",
+        "NE": "Nebraska",
+        "NV": "Nevada",
+        "NH": "New Hampshire",
+        "NJ": "New Jersey",
+        "NC": "North Carolina",
+        "ND": "North Dakota",
+        "OH": "Ohio",
+        "OR": "Oregon",
+        "RI": "Rhode Island",
+        "SC": "South Carolina",
+        "SD": "South Dakota",
+        "TN": "Tennessee",
+        "TX": "Texas",
+        "VT": "Vermont",
+        "VA": "Virginia",
+        "WA": "Washington",
+        "WI": "Wisconsin",
+        "WY": "Wyoming"
+    };
+</script>
+
+<!-- Draw scatterplots -->
+<script src="js/scatterplot-starter.js"></script>
+
+</body>
+
+</html>
