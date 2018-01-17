@@ -103,7 +103,7 @@ function initialize() {
 
 	// Initialization of helper visualizations (crime heatmap, crime markers)
 	initializeHeatMap();
-	//plotCrimeMarkers();
+	plotCrimeMarkers();
 }
 
 
