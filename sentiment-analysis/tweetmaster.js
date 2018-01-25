@@ -12,7 +12,7 @@
  */
 
 function getScore(c) {
-  if (c == true) {
+  if (c == "TRUE") {
     return -1;
   } else {
     return 1;
@@ -44,10 +44,10 @@ function semanticAnalysis() {
    * would subtract that value from the word's score in our wordMap.
    *
    * After going through all training tweets, we should have a score for each word that we've seen.*/
-  for (var i = 0; i < testTweets.length; i++) {
-    var tweet = testTweets[i];
+  for (var i = 0; i < trainTweets.length; i++) {
+    var tweet = trainTweets[i];
     var words = tweet.tweet.toLowerCase().split(" ");
-    var label = getScore(classifications[tweet.tweetID]);	// Returns 1 if pro-refugee, -1 if anti-refugee
+    var label = getScore(tweet.classification);	// Returns 1 if pro-refugee, -1 if anti-refugee
 
     // TODO: Update wordMap based on the words in this tweet + the label
   }
