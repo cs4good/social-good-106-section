@@ -163,23 +163,6 @@ function clearMarkers() {
 	}
 }
 
-/*	Function: reset()
- *	Called when user clicks on "Reset" button. Clears the map and all settings.
- *	DO NOT EDIT
- */
-function reset() {
-	clearMarkers();
-	markers = [];
-	waypoints = [];
-	origin = null;
-	destination = null;
-	directionsDisplay.setMap(null);
-	directionsDisplay.setPanel(null);
-	directionsDisplay = new google.maps.DirectionsRenderer();
-	directionsDisplay.setMap(map);
-	directionsDisplay.setPanel(document.getElementById("directionsPanel"));    
-}
-
 
 /************** 	3. Route Calculations	 ****************/
 

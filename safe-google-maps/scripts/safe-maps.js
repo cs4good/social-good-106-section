@@ -13,7 +13,66 @@ var waypoints = [];			// Mid-way stops
 var markers = [];			// Contains markers for all points on trip (origin, destination, and waypoints)
 var crimes = JSON.parse(crimes);		// crime data from crimes.json
 var crimeHeatMapData;					// global variable for heat map data
-var relavantCrimeDist = 0.0008;
+var relavantCrimeDist = 0.0008;			
+
+
+/**********************************************  TO-DO  ***************************************************
+ * When the user changes the route displayed on the map, our starter code calls scoreRoute(route) to determine 
+ * the crime score of the route being displayed. Your job is to determine this score. The score should be 
+ * indicative of how "unsafe" a route is, with 0 being safest and high numbers being unsafe. Right now, we 
+ * always return 0 as the score for the route.
+ */
+/**********************************************************************************************************/
+function scoreRoute(route) {
+	var crimeScore = Infinity;		// Set crimeScore to be the actual score of this route. 
+
+	// TODO: Calculate crimescore given the route.
+	// Hint 1: console.log(route) so you can see what it is!
+	// Hint 2: you will have to refer to the "crimes" variable, which is an array of crime locations.
+	//         refer to the data/SF_crime_data.json file to see the format of the crimes variable.
+	//
+	// Hint 3: Each element in route represents a leg of the trip, and has latitude and longitude start and 
+	//         end points. You can get the value of these points for example by calling: 
+	//
+	//         var starting_lng = route[0].start_point.lat()
+
+	// Hint 4: If you're struggling, try to think of how you'd determine the safest routes by hand (without coding).
+	// 		   After determining that, try to code your "by hand" implementation :)
+
+
+	return crimeScore;
+}
+
+/*	Function: getSafestRoute(routes)
+ *  Params: Takes in an array of routes
+ * 
+ *	TODO: Return safest route of the array of routes by calculating safety score of each route
+ *	and returning the route with the Lowest safety score
+ * 
+ * 	Currently only returns the first route in the array of routes.
+ */
+function getSafestRoute(routes) {
+
+	// TODO: Understand how routes is structured and return safest route
+	// Refer to warmup code for help!
+	// hint: to iterate through the array of routes, do:
+	// for (var i = 0; i < routes.length; i++) {
+	// var route = routes[i];
+	// }
+	//
+
+	return routes[0];
+}
+
+/**********************************************  End of TO-DO  ***************************************************
+
+
+
+
+
+
+
+
 
 /*	Function: getHeatMapData()
  *	Iterates through crimes.json file and creates array of long, latitude points.
@@ -151,19 +210,11 @@ function reset() {
 
 
 /************** 	3. Route Calculations	 ****************/
-// TODO: These functions calculate the route the user should take to get from point A to B.
+// These functions calculate the route the user should take to get from point A to B.
 // You will need to help write code that determines the SAFEST route (fastest is already given)
 
-
-/*	Function: getSafestRoute(routes)
- *	TODO: Return safest route of the array of routes
- *	
- * 	Currently only returns the first route in the array of routes.
- */
-function getSafestRoute(routes) {
-
-	// TODO: Understand how routes is structured and return safest route
-	return routes[0];
+function setScore(num) {
+	document.getElementById("currScore").innerHTML = "" + num;
 }
 
 /*	Function: calcFastestRoute()
@@ -199,8 +250,10 @@ function calcRoute(safest) {
 			var editedResponse = response;
 			if (safest) {
 				var bestRoute = getSafestRoute(response.routes);		// Pass in all routes and returns safest route
+				setScore(scoreRoute(bestRoute));
 				editedResponse.routes = [bestRoute];					// Set response routes variable to have only the safest route
 			} else {
+				setScore(scoreRoute(response.routes[0]));
 				editedResponse.routes = [response.routes[0]];
 			}
 			directionsDisplay.setDirections(editedResponse);
