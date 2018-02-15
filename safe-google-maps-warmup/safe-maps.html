@@ -13,23 +13,20 @@
 		<title>Google Maps JavaScript API v3 Example: Optimized Directions</title>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;key=AIzaSyCwm6nVUX96TAqGLSwDVRtYq_6IAq-g5qI&libraries=visualization"></script>
 		<script type="text/javascript" src="data/SF_crime_data.json"></script>
-		<script src="scripts/safe-maps.js"></script>
+		<script src="scripts/safe-maps-warmup-solution.js"></script>
 		<link rel="stylesheet" type="text/css" href="safe-maps.css">
 		
 	</head>
 	<body onload="initialize()" style="font-family: sans-serif;" background="w3s.png">
 		<br>
 		<div id="top">
-			<h4 id='title'>Safer Google Maps<br></h4>
+			<h4 id='title'>Safer Google Maps Warm Up<br></h4>
 			<p id='header'>When a user uses Google Maps to get walking directions from one place to the next, Google Maps returns to the user the fastest route(s) that get the user to their destination. However, the app currently does not take into account <b>safety</b>, a factor that can be especially important when walking through giant cities like SF. Let's try and fix that!</p>
-			Your job will be to return the safest walking directions when the user clicks on the "Get Safest Directions" button. To do this, we will be pulling from SF crime data from 2013-2015. To begin, refer to safe-maps.js!</p><br>
-			<p id='howto'><b>To use the app below</b>, click on the map with your mouse to indicate a start and end point, and then click on any of the buttons below to get either the fastest walking directions or the safest walking directions. <br>
+			In this warmup for next week, your job will be to determine a mechanism for "scoring" each possible path returned by GoogleMaps when we ask it for directions. You can see a path's score by clicking on the route and looking at the number below the map. A higher score means a more dangerous path. Currently, we score every path as 0.</p><br>
 		</div>
 
 		<div id="app">
-			<input type="button" value="Get Fastest Directions!" onclick="calcRoute(false)" />
-			<input type="button" value="Get Safest Directions!" onclick="calcRoute(true)" />
-			<input type="button" value="Reset" onclick="reset()" />
+			<input type="button" value="Get Directions!" onclick="calcRoute(false)" />
 			<br><br>
 			<div style="border: 1px; width: 645px; height: 400px; margin-left: auto; margin-right: auto;">
 				<div id="map_canvas" style="float: left;border: 1px solid black; width:398px; height:398px"></div>

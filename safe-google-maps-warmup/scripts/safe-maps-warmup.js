@@ -4,7 +4,7 @@
 // Last Updated: Winter '17
 
 /**************		Global Variables		****************/
-var directionDisplay;
+var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map;					// Reference to Google Map object
 var origin = null;			// Starting point
@@ -12,8 +12,8 @@ var destination = null;		// Ending point
 var waypoints = [];			// Mid-way stops
 var markers = [];			// Contains markers for all points on trip (origin, destination, and waypoints)
 var crimes = JSON.parse(crimes);		// crime data from crimes.json
-var crimeHeatMapData;					// global variable for heat map data
-var relavantCrimeDist = 0.0008;			
+var relavantCrimeDist = 0.0008;
+
 
 
 /**********************************************  TO-DO  ***************************************************
@@ -24,7 +24,7 @@ var relavantCrimeDist = 0.0008;
  */
 /**********************************************************************************************************/
 function scoreRoute(route) {
-	var crimeScore = Infinity;		// Set crimeScore to be the actual score of this route. 
+	var crimeScore = 0;		// Set crimeScore to be the actual score of this route. 
 
 	// TODO: Calculate crimescore given the route.
 	// Hint 1: console.log(route) so you can see what it is!
@@ -43,75 +43,23 @@ function scoreRoute(route) {
 	return crimeScore;
 }
 
-/*	Function: getSafestRoute(routes)
- *  Params: Takes in an array of routes
- * 
- *	TODO: Return safest route of the array of routes by calculating safety score of each route
- *	and returning the route with the Lowest safety score
- * 
- * 	Currently only returns the first route in the array of routes.
- */
-function getSafestRoute(routes) {
-
-	// TODO: Understand how routes is structured and return safest route
-	// Refer to warmup code for help!
-	// hint: to iterate through the array of routes, do:
-	// for (var i = 0; i < routes.length; i++) {
-	// var route = routes[i];
-	// }
-	//
-
-	return routes[0];
-}
-
-/**********************************************  End of TO-DO  ***************************************************
-
-
-
-
-
-
-
-
-
-/*	Function: getHeatMapData()
- *	Iterates through crimes.json file and creates array of long, latitude points.
- */
-function getHeatMapData() {
-	var heatMapData = [];
-	for (var i = 0; i < crimes.length; i++) {
-		heatMapData.push(new google.maps.LatLng(crimes[i].lat, crimes[i].lng));
-	}
-	return heatMapData;
-}
 
 /*	Function: initializeGoogleMap()
  *	Initializes Google Map by filling div with ID "map_canvas" with a map of SF
  */
 function initializeGoogleMap() {
-	var sanfran = new google.maps.LatLng(37.7749295, -122.4194155);
+	var sanfran = new google.maps.LatLng(37.7847515, -122.433567);
 	var myOptions = {
-		zoom: 13,
+		zoom: 16,
+		maxZoom:16,
+      	minZoom:16,
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
-		center: sanfran
+		center: sanfran,
+		draggable: false
 	}
 	return new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-}
 
-/*	Function: initializeHeatMap()
- *	Plots a heat map layer on top of the map to show which areas have high concentrations of assault.
- *	For visual purposes only - not required for assignment.
- */
-function initializeHeatMap() {
-	var heatmap = new google.maps.visualization.HeatmapLayer({
-		data: crimeHeatMapData,
-		dissipating: false,
-		radius: 0.005,
-		opacity: 0.4
-	});
-	heatmap.setMap(map);
-	var gradient = ['rgba(0, 255, 255, 0)','rgba(0, 255, 255, 1)','rgba(0, 191, 255, 1)','rgba(0, 127, 255, 1)', 'rgba(0, 63, 255, 1)', 'rgba(0, 0, 255, 1)', 'rgba(0, 0, 223, 1)', 'rgba(0, 0, 191, 1)', 'rgba(0, 0, 159, 1)', 'rgba(0, 0, 127, 1)', 'rgba(63, 0, 91, 1)', 'rgba(127, 0, 63, 1)', 'rgba(191, 0, 31, 1)', 'rgba(255, 0, 0, 1)'];
-	heatmap.set('gradient', gradient);
+
 }
 
 /*	Function: plotCrimeMarkers()
@@ -135,34 +83,17 @@ function plotCrimeMarkers() {
 function initialize() {
 	// initialization of display, data, and map
 	directionsDisplay = new google.maps.DirectionsRenderer();
-	crimeHeatMapData = getHeatMapData();
 	map = initializeGoogleMap();
 	directionsDisplay.setMap(map);
 	directionsDisplay.setPanel(document.getElementById("directionsPanel"));
+	origin = new google.maps.LatLng(37.78721971989918, -122.43211269378662);
+	destination = new google.maps.LatLng(37.781928690563745, -122.43582487106323);
+	addMarker(new google.maps.LatLng(37.78721971989918, -122.43211269378662));
+	addMarker(new google.maps.LatLng(37.781928690563745, -122.43582487106323));
 
-	// Add "click" event listener to map so that when user clicks on map, a marker is added
-	google.maps.event.addListener(map, 'click', function(event) {
-		if (origin == null) {
-			origin = event.latLng;
-			addMarker(origin);
-		} else if (destination == null) {
-			destination = event.latLng;
-			addMarker(destination);
-		} else {
-			// Max of 8 waypoints so that we don't go too crazy with the directions
-			if (waypoints.length < 9) {
-				waypoints.push({ location: destination, stopover: true });
-				destination = event.latLng;
-				addMarker(destination);
-			} else {
-				alert("Maximum number of waypoints reached");
-			}
-		}
-	});
-
-	// Initialization of helper visualizations (crime heatmap, crime markers)
-	initializeHeatMap();
-	//plotCrimeMarkers();
+	// Initialization of helper visualizations (crime markers)
+	plotCrimeMarkers();
+	calcRoute();
 }
 
 
@@ -191,27 +122,8 @@ function clearMarkers() {
 	}
 }
 
-/*	Function: reset()
- *	Called when user clicks on "Reset" button. Clears the map and all settings.
- *	DO NOT EDIT
- */
-function reset() {
-	clearMarkers();
-	markers = [];
-	waypoints = [];
-	origin = null;
-	destination = null;
-	directionsDisplay.setMap(null);
-	directionsDisplay.setPanel(null);
-	directionsDisplay = new google.maps.DirectionsRenderer();
-	directionsDisplay.setMap(map);
-	directionsDisplay.setPanel(document.getElementById("directionsPanel"));    
-}
-
 
 /************** 	3. Route Calculations	 ****************/
-// These functions calculate the route the user should take to get from point A to B.
-// You will need to help write code that determines the SAFEST route (fastest is already given)
 
 function setScore(num) {
 	document.getElementById("currScore").innerHTML = "" + num;
@@ -220,7 +132,7 @@ function setScore(num) {
 /*	Function: calcFastestRoute()
  *	Called when user clicks "Get Directions" button. Calculates routes and returns fastest routes to user.
  */
-function calcRoute(safest) {
+function calcRoute() {
 	// Make sure we have an origin and destination at minimum.
 	if (origin == null) {
     	alert("Click on the map to add a start point");
@@ -248,15 +160,11 @@ function calcRoute(safest) {
 	directionsService.route(request, function(response, status) {
 		if (status == google.maps.DirectionsStatus.OK) {
 			var editedResponse = response;
-			if (safest) {
-				var bestRoute = getSafestRoute(response.routes);		// Pass in all routes and returns safest route
-				setScore(scoreRoute(bestRoute));
-				editedResponse.routes = [bestRoute];					// Set response routes variable to have only the safest route
-			} else {
-				setScore(scoreRoute(response.routes[0]));
-				editedResponse.routes = [response.routes[0]];
-			}
+			setScore(scoreRoute(editedResponse.routes[0].legs[0].steps));
 			directionsDisplay.setDirections(editedResponse);
+			google.maps.event.addListener(directionsDisplay, 'routeindex_changed', function() { 
+				setScore(scoreRoute(directionsDisplay.directions.routes[directionsDisplay.getRouteIndex()].legs[0].steps));
+            });
 		}
   	});
   
