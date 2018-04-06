@@ -11,7 +11,13 @@ var mapping = {"a":0, "b":1, "c":2,"d":3, "e":4, "f":5,"g":6, "h":7, "i":8,"j":9
  *
  */
 function encryptCaesar(original, length) {
-
+  var encrypted = "";
+  for(var i = 0; i < original.length; i++) {
+    var char = original.charAt(i);
+    var encryptedLetter = shiftLetter(char, length);
+    encrypted += encryptedLetter;
+  }
+  return encrypted;
 }
 
 /*
@@ -25,8 +31,16 @@ function encryptCaesar(original, length) {
  * guess - your guess for the unencrypted string
  *
  */
-function checkCaesar(encrypted, length, guess) {
-
+function checkCaesarWithLength(encrypted, length, guess) {
+  var msgLen = encrypted.length;
+  if(msgLen != guess.length) return false;
+  if(msgLen == 0) return true;
+  for(var i = 0; i < msgLen; i++) {
+    var charGuess = guess.charAt(i);
+    var encryptedLetter = shiftLetter(charGuess, length);
+    if(encryptedLetter != encrypted.charAt(i)) return false;
+  }
+  return true;
 }
 
 /*
@@ -40,6 +54,12 @@ function checkCaesar(encrypted, length, guess) {
  *
  */
 function checkCaesar(encrypted, guess) {
+  if(encrypted.length != guess.length) return false;
+  if(encrypted.length == 0) return true;
+  var charEncrypted = encrypted.charCodeAt(0);
+  var charGuess = guess.charCodeAt(0);
+  var length = charEncrypted - charGuess;
+  return checkCaesarWithLength(encrypted, length, guess);
 
 }
 
@@ -54,7 +74,7 @@ function checkCaesar(encrypted, guess) {
  *
  */
 function shiftLetter(original, length) {
-
+  return Object.keys(mapping)[(mapping[original] + length)%26];
 }
 
 /*
