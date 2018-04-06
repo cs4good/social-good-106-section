@@ -1,48 +1,82 @@
-// hint: arr[Math.floor(Math.random()*arr.length)] will return a random element from array arr
-// Feel free to use your own quotes!
-
-// upliftingQuote should return a random uplifting quote.
-function upliftingQuote() {
-  // Example quotes:
-  // "The first step is you have to say that you can."
-  // "Rise above the storm and you will find the sunshine.",
-  // BEGIN CODE 
-  
-  // END CODE
+function run() {
+  //Call whichever functions you want to run here.
 }
 
-// inspiringQuote should return a random inpsiring quote.
-function inspiringQuote() {
-  // Example quotes: 
-  // "If opportunity doesn't knock, build a door."
-  // "The best way out is always through."
-  // BEGIN CODE 
-  
-  // END CODE
+function number() {
+  //Floating Point
+  console.log((0.1 + 0.1) == 0.2);
+  console.log((0.1 + 0.2) == 0.3);
+  //Nan & Infinity
+  console.log(1/0);
+  console.log(Math.sqrt(-1));
+  /* TODO:
+   * Compute the square root of your birth year.
+   */
 }
 
-// soothingQuote should return a random soothing quote.
-function soothingQuote() {
-  // Example quotes: 
-  // "For every minute you are angry you lose sixty seconds of happiness."
-  // "Don’t waste your time in anger, regrets, worries, and grudges. Life is too short to be unhappy."
-  // BEGIN CODE 
-  
-  // END CODE
+function string() {
+  var studentQuote = 'I love CS 106S!'
+  console.log(studentQuote.length);
+  console.log(studentQuote.indexOf(' '));
+  console.log('CS' + 'SG');
+  var abcd = "abcd";
+  /* TODO:
+   * Use "charAt()" to find what the third letter of var abcd is.
+   * Create a version of studentQuote that is in ALL CAPS.
+   * Helpful string methods include: charAt(), search(), replace(), toUpperCase(), substr(), etc.
+   */
 }
 
-// saySomethingNice should return an inspiring quote if the friend is feeling uninspired, an 
-// uplifting quote if the friend is feeling sad, and a soothing quote if the friend is feeling
-// angry.
-// The variable friend will be an object with a name and emotion.
-function saySomethingNice(friend) {
-  
+function boolean() {
+  var cs = true;
+  var socialGood = true;
+  console.log(cs && socialGood);
+  console.log(Math.sqrt(-1) == cs);
+  console.log(Boolean(1/0) == cs);
+}
+
+function objects() {
+  var berkeley = {intelligence: 0, tears: Infinity};
+  var stanford = {intelligence: 100, smiles: Infinity};
+  //Referenced either as a structure or a hash table with string keys.
+  console.log(stanford.smiles);
+  console.log(berkeley["intelligence"]);
+  stanford.students = 40000;
+  console.log(stanford);
+  delete stanford.students;
+  console.log(stanford)
+  console.log(Object.keys(stanford));
+  /* TODO:
+   * Create an object representing your music playlist, mapping song name to artist.
+   * Add "Everytime We Touch" by Cascada to your playlist.
+   * Add "Love on Top" by Beyonce.
+   * Add "Look What You Made Me Do" by Taylor Swift.
+   * Delete "Look What You Made Me Do" by Taylor Swift.
+   * Print a list of just song names.
+   */
+}
+
+function arrays() {
+  var colors = ['red', 'blue', 'yellow'];
+  console.log(typeof colors);
+  console.log(colors[2]);
+  colors[10] = true;
+  console.log(colors);
+  console.log(colors.length);
+  /* TODO:
+   * Create an array of your classes.
+   * Write code to simulate adding a class to your array and dropping a class.
+   */
+}
+
+
+function conditionals(name, age) {
+  /* TODO:
+   * Write an if statement to print out the given name parameter if it is your name.
+   * Loop over the letters in your name and print them out if they are vowels.
+   * While the given age is less than 100, print it out (hint: use console.log()) and increment it.
+   */
 }
 
 // DO NOT ALTER THE CODE BELOW THIS LINE
-friends = [ {name: "Alex", emotion: "sad"}, {name: "Diego", emotion: "angry"}, {name: "Sarah", emotion: "uninspired"}, {name: "Eve", emotion: "sad"} ]
- 
-for(var friend of friends) {
-  console.log(friend.name + " is feeling " + friend.emotion + ".")
-  console.log("NiceQuoteBot says: " + saySomethingNice(friend) + "\n")
-}
+run();
