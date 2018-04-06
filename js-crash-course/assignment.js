@@ -4,6 +4,9 @@ var mapping = {
   "r":17,"s":18, "t":19, "u":20,"v":21, "w":22, "x":23, "y":24, "z":25
 }
 
+/* TODO: Write some tests here!
+ */
+
 /*
  * Encrypts the given string using the Caesar cipher and the given length.
  * ----
@@ -15,7 +18,7 @@ var mapping = {
  *
  */
 function encryptCaesar(original, length) {
-
+ // TODO: Complete this function.
 }
 
 /*
@@ -30,7 +33,7 @@ function encryptCaesar(original, length) {
  *
  */
 function checkCaesarWithLength(encrypted, length, guess) {
-
+ // TODO: Complete this function.
 }
 
 /*
@@ -44,11 +47,11 @@ function checkCaesarWithLength(encrypted, length, guess) {
  *
  */
 function checkCaesar(encrypted, guess) {
-
+ // TODO: Complete this function.
 }
 
 /*
- * Determines whether the first string is the encrypted version of the second.
+ * Shifts the given letter by a given length.
  * ----
  * Returns:
  * char - shifted letter
@@ -58,7 +61,7 @@ function checkCaesar(encrypted, guess) {
  *
  */
 function shiftLetter(original, length) {
-
+ // TODO: Complete this function.
 }
 
 /*
@@ -74,5 +77,5 @@ function shiftLetter(original, length) {
  *
  */
 function encryptVigenere(original, keyword) {
-
+ // TODO: Complete this function.
 }

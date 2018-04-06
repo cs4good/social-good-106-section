@@ -16,6 +16,7 @@ var mapping = {
  */
 function encryptCaesar(original, length) {
   var encrypted = "";
+  original = original.toLowerCase();
   for (var i = 0; i < original.length; i++) {
     var char = original.charAt(i);
     var encryptedLetter = shiftLetter(char, length);
@@ -36,6 +37,8 @@ function encryptCaesar(original, length) {
  *
  */
 function checkCaesarWithLength(encrypted, length, guess) {
+  encrypted = encrypted.toLowerCase();
+  guess = encrypted.toLowerCase();
   var msgLen = encrypted.length;
   if (msgLen != guess.length) return false;
   if (msgLen == 0) return true;
@@ -58,6 +61,8 @@ function checkCaesarWithLength(encrypted, length, guess) {
  *
  */
 function checkCaesar(encrypted, guess) {
+  encrypted = encrypted.toLowerCase();
+  guess = encrypted.toLowerCase();
   if (encrypted.length != guess.length) return false;
   if (encrypted.length == 0) return true;
   var charEncrypted = encrypted.charCodeAt(0);
@@ -68,7 +73,7 @@ function checkCaesar(encrypted, guess) {
 }
 
 /*
- * Determines whether the first string is the encrypted version of the second.
+ * Shifts the given letter by a given length.
  * ----
  * Returns:
  * char - shifted letter
@@ -78,8 +83,9 @@ function checkCaesar(encrypted, guess) {
  *
  */
 function shiftLetter(original, length) {
-  letters = Object.keys(mapping);
-  newValue = (mapping[original] + length) % 26;
+  if (!original.match(/[a-z]/i)) return original;
+  var letters = Object.keys(mapping);
+  var newValue = (mapping[original] + length) % 26;
   return letters[newValue];
 }
 
