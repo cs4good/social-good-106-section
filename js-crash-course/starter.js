@@ -31,8 +31,8 @@ function boolean() {
   var cs = true;
   var socialGood = true;
   console.log(cs && socialGood);
-  console.log(Math.sqrt(-1) == cs);
-  console.log(Boolean(1/0) == cs);
+  console.log(Math.sqrt(-1));
+  console.log(Boolean(1/0));
 }
 
 function objects() {
