@@ -1,4 +1,4 @@
-/* CS106S Week 2: Cancer Diagnosis via KNN
+/* CS106S Week 5: Cancer Diagnosis via KNN
  * Welcome! In this class, we will be looking at tumors and classifying them as benign or malignant.
  *
  * The method we will be using to do so is called K-Nearest Neighbors, or KNN. The way KNN works is as follows:
@@ -10,12 +10,8 @@
  * First, make sure that index.html runs the script "<script src="cancer-classify.js"></script>". 
  * index.html should NOT have "<script src="cancer-classify-no-d3.js"></script>"
  *
- * To run the code, navigate to the directory containing this file in Terminal and type "python -m SimpleHTTPServer"
- * Then open up your browser and navigate to "localhost:8000" (or whatever port your SimpleServer started on)
+ * To run the code, simply open the index.html file in this folder (if on mac, double clicking on index.html should open it in a browser).
  * Then open up your console and check the output :D. Refresh the page to re-run the code!
- *
- * If the server does not work, you can instead use the cancer-classify-no-d3.js code, which only requires you to open the index.html file.
- * See cancer-classify-no-d3.js for more details.
  *
  * Edit the code where you see "TODO" to make this work! The code is heavily commented, but if you have any questions, do
  * not hesitate to raise your hand/ask an instructor :) 
@@ -32,7 +28,7 @@ var MALIGNANT = 4;              // Samples with classification of "4" are Malign
 var trainData;            
 var testData;
 
-// (1) Right when we load the script, we read in our training data and test data from the CSV's and store into our global variables.
+// (1) When we load the script, we read in our training and test data from CSV's and store them in global variables.
 d3.text("train_data.csv", "text/csv", function(text) {
   trainData = d3.csv.parseRows(text, function(d) {
     return d.map(Number);
@@ -41,8 +37,8 @@ d3.text("train_data.csv", "text/csv", function(text) {
     testData = d3.csv.parseRows(text, function(d) {
       return d.map(Number);
     });
-    kNN();
   })
+  kNN();
 });
 
 // (2) We then run kNN to classify our test instances
