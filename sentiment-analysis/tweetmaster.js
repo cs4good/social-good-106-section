@@ -1,4 +1,4 @@
-/* CS106S Week 3: Sentiment Analysis on Refugee Related Tweets
+/* Sentiment Analysis on Refugee Related Tweets
  * Welcome! In this class, we will be looking at classifying the sentiment of tweets with 
  * regards to refugees.
  *
@@ -49,8 +49,11 @@ function semanticAnalysis() {
     var words = tweet.tweet.toLowerCase().split(" ");
     var label = getScore(tweet.classification);	// Returns 1 if pro-refugee, -1 if anti-refugee
 
-    // TODO: Update wordMap based on the words in this tweet + the label
+    // TODO: In-class tutorial: update wordMap based on the words in this tweet + the label
   }
+  /* TODO: For the homework assignment - expand this for-loop to create a wordMap that has tf-idf
+   * scores. This is left as an open exercise but a general framework is given in class slides.
+   */
 
   /* 2. Classifying our Test Tweets!
    * Now that we have a Word Map of each word to its score of pro/anti-refugee sentiment, let's

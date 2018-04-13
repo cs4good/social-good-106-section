@@ -1,4 +1,5 @@
-/* CS106S Week 3: Sentiment Analysis on Refugee Related Tweets
+/* Sentiment Analysis on Refugee Related Tweets
+ * TODO: Update this to include tf-idf scoring.
  * Welcome! In this class, we will be looking at classifying the sentiment of tweets with 
  * regards to refugees.
  *
