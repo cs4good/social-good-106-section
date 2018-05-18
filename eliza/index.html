@@ -1,0 +1,67 @@
+<html>
+	<!-- The Head of an HTML File deals with all the setup for displaying a website -->
+	<head>
+		<!-- The title tag "title's" this webpage -->
+		<title>Eliza</title>
+
+		<!-- these LINK tags act like imports. here, we are importing fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+		<!-- and here, these LINK tags are importing CSS Stylesheets (things that make HTML pretty) -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="./assets/css/main.css"/>
+		<link rel="stylesheet" href="./assets/css/send.css"/>
+		<link rel="stylesheet" href="./assets/css/chat.css"/>
+		<link rel="stylesheet" href="./assets/css/notifications.css"/>
+	</head>
+
+	<!-- The Body of an HTML File is where all the content goes (usually) -->
+	<body id="body">
+		<!--
+		This is the display for showing all messages in the chat so far!
+		It's loaded in dynamically with JS
+		-->
+		<div class="container">
+			<div class="row chat-row">
+				<div class="col-md-8 col-md-offset-2">
+
+					<span id="chat-area"></span>
+					
+				</div>
+			</div>
+		</div>
+
+		<!-- This is the Text Input Area for users to send a message -->
+		<div class="container send-wrapper">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 send-inner-wrapper">
+					<p class="send-message-help-text">Talk to Eliza by typing into the textbox below:</p>
+					<input type="text" class="send-textbox" />
+					<p class="send-message-help-below-text text-right">Send your message by pressing "Enter"</p>
+					<p class="bottom-label text-center">Originally built by <a href="https://github.com/kweaver00" target="_blank">Keith Weaver</a>. Modified for CS106S (Spring 2018).</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- This is a Notifications Area (the top left part of the screen) -->
+		<span id="notification-area">
+		</span>
+
+		<!-- At the bottom of the HTML we have SCRIPT tags. These load in common libraries -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- and this tag loads the Main Eliza Script (which you can find in the .js folder) -->
+		<script src="./js/eliza.js"></script>
+
+		<!-- Script that manages user actions -->
+		<script src="./js/actions.js"></script>
+
+		<!-- Script that has some demos and can be run based on user actions -->
+		<script src="./js/demo.js"></script>
+		
+		<!-- Scripts that generates html to notify user -->
+		<script src="./js/notifications.js"></script>
+	</body>
+</html>
