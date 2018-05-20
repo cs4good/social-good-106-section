@@ -15,6 +15,7 @@ function Cell(y, x, state) {
   this.y = y;
   this.x = x;
   this.state = state;
+  this.next = 0;
 }
 
 // A Grid of Cells
@@ -23,7 +24,6 @@ function CellGrid(w, h) {
   this.w = w;
   this.types = 2;
   this.cells = Matrix(w, h);
-  this.next = Matrix(w, h);
 
   // Initializes the grid to dead cells
   this.init = function(random) {
@@ -78,7 +78,7 @@ function CellGrid(w, h) {
     // Second, update the state of the cells
     for (var y = 0; y < this.h; y++) {
       for (var x = 0; x < this.w; x++) {
-        this.cells[y][x].state = this.next[y][x];
+        this.cells[y][x].state = this.cells[y][x].next;
       }
     }
   }

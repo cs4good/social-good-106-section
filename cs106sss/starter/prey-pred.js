@@ -8,6 +8,7 @@ function Cell(y, x, state) {
   this.y = y;
   this.x = x;
   this.state = state;
+  this.next = 0;
 }
 
 function CellGrid(w, h) {
@@ -17,7 +18,6 @@ function CellGrid(w, h) {
   // Options: Empty, Prey, Pred
   this.types = 2; 
   this.cells = Matrix(w, h);
-  this.next = Matrix(w, h);
 
   // TODO: Set constant values
   this.preyBirthRate;
@@ -50,12 +50,12 @@ function CellGrid(w, h) {
     if (me.state == 1) {
       if (Math.random() < Math.pow((1 - this.preyDeathRate), numPred)) {
         // Attempt to hunt prey and fail
-        this.next[cy][cx] = 1;
+        me.next = 1;
       } else if (Math.random() < this.predBirthRate) {
         // Predators attempt to breed
-        this.next[cy][cx] = 2;
+        me.next = 2;
       } else {
-        this.next[cy][cx] = 0;
+        me.next = 0;
       }
     // Case 2: Predator
     } else if (me.state == 2) {
@@ -95,7 +95,7 @@ function CellGrid(w, h) {
 
     for (var y = 0; y < this.h; y++) {
       for (var x = 0; x < this.w; x++) {
-        this.cells[y][x].state = this.next[y][x];
+        this.cells[y][x].state = this.cells[y][x].next;
       }
     }
   }

@@ -15,6 +15,7 @@ function Cell(y, x, state) {
   this.y = y;
   this.x = x;
   this.state = state;
+  this.next = 0;
 }
 
 // A Grid of Cells
@@ -23,7 +24,6 @@ function CellGrid(w, h) {
   this.w = w;
   this.types = 2;
   this.cells = Matrix(w, h);
-  this.next = Matrix(w, h);
 
   // Initializes the grid to dead cells
   this.init = function(random) {
@@ -39,20 +39,21 @@ function CellGrid(w, h) {
   // Sets the next matrix to the next state of each cell
   // TODO: fill in the update function
   this.setNext = function(cy, cx, neighbors) {
+    var me = this.cells[cy][cx];
     var num = 0;
     for (var i = 0; i < neighbors.length; i++) {
       num += neighbors[i].state;
     }
     // If three neighbors, you're born
     if (num == 3) {
-      this.next[cy][cx] = 1;
+      me.next = 1;
     // If more than 3 neighbors, you die of overpopulation
     // If less than 2 neighbors, you die of isolation
     } else if (num > 3 || num < 2) {
-      this.next[cy][cx] = 0;
+      me.next = 0;
     // Else, square coninutes the same
     } else {
-      this.next[cy][cx] = this.cells[cy][cx].state;
+      me.next = me.state;
     }
   }
 
@@ -87,7 +88,7 @@ function CellGrid(w, h) {
     // Second, update the state of the cells
     for (var y = 0; y < this.h; y++) {
       for (var x = 0; x < this.w; x++) {
-        this.cells[y][x].state = this.next[y][x];
+        this.cells[y][x].state = this.cells[y][x].next;
       }
     }
   }
