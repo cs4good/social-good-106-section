@@ -1,3 +1,14 @@
+# Javascript Crash Course
+
+## Steps
+
+1. Make sure you have Chrome or Safari installed
+2. Download the starter code
+3. Type 'cmd-option-j' to open the Javascript Console
+4. Go through `tut.js`, mirroring in console
+5. Open up `index.html` from the starter code
+6. Continue to Cryptography!
+
 # Basic Cryptography
 
 ## Intro
