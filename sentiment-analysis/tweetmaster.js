@@ -12,11 +12,7 @@
  */
 
 function getScore(c) {
-  if (c == "TRUE") {
-    return -1;
-  } else {
-    return 1;
-  }
+  return (c == "TRUE") ? -1 : 1;
 }
 
 var wordMap = {}
@@ -51,6 +47,7 @@ function semanticAnalysis() {
 
     // TODO: In-class tutorial: update wordMap based on the words in this tweet + the label
   }
+
   /* TODO: For the homework assignment - expand this for-loop to create a wordMap that has tf-idf
    * scores. This is left as an open exercise but a general framework is given in class slides.
    */
@@ -77,7 +74,8 @@ function semanticAnalysis() {
   /*********** END CODE HERE *********/
 
   var accuracy = getAccuracy(myGuesses);
-  if (!(accuracy === null)) {
+
+  if (accuracy !== null) {
     console.log("Percent correct: " + accuracy.percentCorrect + "%");
     console.log("False positive rate: " + accuracy.falsePositiveRate + "%");
     console.log("False negative rate: " + accuracy.falseNegativeRate + "%");

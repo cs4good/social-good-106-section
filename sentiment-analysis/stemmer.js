@@ -2,6 +2,7 @@
  * Returns a stemmed version of a word.
  * var stemmed_word = stemmer(original_word);
  */
+
 var stemmer = (function(){
   var step2list = {
       "ational" : "ate",
@@ -212,7 +213,6 @@ var stemmer = (function(){
     if (firstch == "y") {
       w = firstch.toLowerCase() + w.substr(1);
     }
-
 
     return w;
   }
