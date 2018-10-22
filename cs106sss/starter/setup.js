@@ -9,8 +9,8 @@
 
 /////////////////////////////////////
 // Play around with setting here ////
-const WIDTH  = 50;               ////
-const HEIGHT = 50;               ////
+const WIDTH  = 10;               ////
+const HEIGHT = 10;               ////
 const DELAY  = 400;              ////
 const RANDOM = true;             ////
 //////////////////////////////////////
