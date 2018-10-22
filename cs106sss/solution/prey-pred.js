@@ -16,7 +16,7 @@ function CellGrid(w, h) {
   this.w = w;
   // TODO: Change number of species
   // Options: Empty, Prey, Pred
-  this.types = 3; 
+  this.types = 3;
   this.cells = Matrix(w, h);
 
   // TODO: Set constant values
@@ -28,13 +28,13 @@ function CellGrid(w, h) {
   this.init = function(random) {
     for (var y = 0; y < this.h; y++) {
       for (var x = 0; x < this.w; x++) {
-        // TODO: set up so with probability 
+        // TODO: set up so with probability
         // 60% square is a prey
-        // 16% square is a pred 
+        // 16% square is a pred
         // 24% square is empty
         var state = random ?
           (Math.random() < 0.6 ? 1 :
-            (Math.random() < 0.6 ? 0 : 2)) 
+            (Math.random() < 0.6 ? 0 : 2))
           : 0;
         this.cells[y][x] = new Cell(y, x, state);
       }

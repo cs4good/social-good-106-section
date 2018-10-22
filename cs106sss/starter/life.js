@@ -39,6 +39,7 @@ function CellGrid(w, h) {
   // Sets the next matrix to the next state of each cell
   // TODO: fill in the update function
   this.setNext = function(cy, cx, neighbors) {
+    var me = this.cells[cy][cx];
     var num = 0;
     // Get number of neighbors
     // If three neighbors, you're born
