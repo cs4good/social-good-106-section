@@ -1,0 +1,30 @@
+<!-- CS 106 S: TranslatAR -->
+<!-- CS+SocialGood -->
+<!-- by Cristobal Sciutto -->
+<!-- (Fall. 2018) -->
+
+<!-- Generates Hiro marker with QR code inside -->
+<!-- Based on github.com/jeromeetienne/AR.js -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <style> * { font-family: 'Montserrat', sans-serif; } </style>
+    </head>
+
+    <body>
+        <center>
+            <h1 style="text-align: center;">ARcode Generator</h1>
+            <input id="urlQrCode" type="text" placeholder="Type message here" size=50>
+            <div style="width: 100%;" id='arcode-container' ></div>
+        </center>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <!-- https://davidshimjs.github.io/qrcodejs/ -->
+        <script src='https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js'></script>
+        <script type="text/javascript" src="./arcode.js"></script>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<body>
+    <p id="text" style="color: black;">This text is black</p>
+
+    <button id="the-button">Click me!</button>
+
+    <script>
+        const button = document.getElementById('the-button')
+        button.addEventListener('click', function(e) {
+            // 1. Get reference to text
+            const text = document.getElementById('text');
+            // 4. Conditional
+            if (text.style.color == "black") {
+                // 2. Change color to yellow
+                text.style.color = "yellow";
+                // 3. Change color to black
+                text.innerHTML = "This text is yellow";
+            } else {
+                text.style.color = "black";
+                text.innerHTML = "This text is black";
+            }
+        })
+    </script>
+</body>
