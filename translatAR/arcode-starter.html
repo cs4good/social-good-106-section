@@ -65,16 +65,14 @@
         // Note: it should only be called once the QRcode is drawn
         // Use drawQrCode's callback as an example
 
-        generateArCodeCanvas(canvas, urlQrCode, () => {
-            console.log('AR-code generated: ', urlQrCode)
-        })
+        generateArCodeCanvas(canvas, urlQrCode);
     }
 
     /////////////////////////
     // Generate ARcode
     /////////////////////////
 
-    function generateArCodeCanvas(canvas, text, cb) {
+    function generateArCodeCanvas(canvas, text) {
         var context = canvas.getContext('2d')
         context.drawImage(hiroImage, 0, 0, canvas.width, canvas.height);
 
@@ -86,8 +84,6 @@
                 canvas.width  * 0.2,
                 canvas.height * 0.2
             );      
-
-            if (cb) cb();
         })
     }
 

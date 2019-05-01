@@ -5,8 +5,6 @@
     <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
     <!-- include ar.js for aframe -->
     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
-    <!-- include QRcode scanner -->
-    <script type="text/javascript" src="tools/instascan.min.js"></script>
 </head>
 
 <body style='margin: 0px; height: 100%; overflow: hidden;'>
@@ -18,42 +16,59 @@
                 value="Hello, World!" 
                 align="center" 
                 wrap-count="15"
-                position='0 0.5 0' 
-                rotation='-60 0 0'></a-text>
+                position='0 0.08 0'
+                rotation='-90 0 0'>
+
+                <a-animation attribute="rotation"
+                             dur="5000"
+                             to="-90 360 0" >
+                </a-animation>
+                <a-animation attribute="position"
+                             dur="3000"
+                             to="0 0.5 0" >
+                </a-animation>
+            </a-text>
 
             <a-box 
                 id="display-box"
                 color="tomato" 
-                rotation='-60 0 0' 
-                position='0 0.43 0'
-                depth="0.1" 
-                height="0.8" 
-                width="4"></a-box>
+                position='0 0 0'
+                depth="0.8" 
+                height="0.1" 
+                width="4">
+
+                <a-animation attribute="rotation"
+                             dur="5000"
+                             to="0 360 0">
+                </a-animation>
+                <a-animation attribute="position"
+                             dur="3000"
+                             to="0 0.42 0" >
+                </a-animation>
+            </a-box>
 
             <a-marker-camera spectator="false"  id="ar-camera" preset="hiro"></a-marker-camera>
         </a-scene>
     </div>
 
-    <div style="position: fixed; bottom: 10; left: 10; border: 3px solid black;">
-        <video id="qr-video" style="height: 100px;"></video>
-    </div>
+    <!-- Initalize video on screen that can be scanned for ARcode -->
+    <video muted playsinline id="qr-video"></video>
 
-    <script type="text/javascript">
-        let scanner = new Instascan.Scanner({ video: document.getElementById('qr-video') });
+    <!-- JS that processes ARcode and updates a-frame elements -->
+    <script type="module">
+        import QrScanner from './tools/qr-scanner.min.js';
+        QrScanner.WORKER_PATH = './tools/qr-scanner-worker.min.js';
 
-        scanner.addListener('scan', (content) => {
-          console.log(content);
+        var video = document.getElementById("qr-video");
+        const scanner = new QrScanner(video, (content) => {
+            console.log(content);
+            const text = document.getElementById('display-text');
+            text.setAttribute('value', content);
 
-          const text = document.getElementById('display-text');
-          text.setAttribute('value', content);
-
-          const box = document.getElementById('display-box');
-          box.setAttribute('height', Math.ceil(content.length / 15) * 0.6);
-          box.setAttribute('width', Math.min(content.length, 15) * 0.3);
+            const box = document.getElementById('display-box');
+            box.setAttribute('depth', Math.ceil(content.length / 15) * 0.6);
+            box.setAttribute('width', Math.min(content.length, 15) * 0.3);
         });
-
-        Instascan.Camera.getCameras().then((cameras) => {
-          if (cameras.length > 0) scanner.start(cameras[0]);
-        })
+        scanner.start();
     </script>
 </body>
