@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+ Copyright 2010 Google Inc. 
+ Licensed under the Apache License, Version 2.0: 
+ http://www.apache.org/licenses/LICENSE-2.0 
+ -->
+
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>CS 106S Bioinformatics</title>
+    <script type="text/javascript" src="data/matrix.json"></script>
+    <script type="text/javascript" src="data/genes.json"></script>
+    <script type="text/javascript" src="data/labels.json"></script>
+    <script src="scripts/jsregression.js"></script>
+    <script src="scripts/bioinformatics.js"></script>
+    <link rel="stylesheet" type="text/css" href="bioinformatics.css" />
+
+</head>
+	<body onload="initialize()" style="font-family: sans-serif;" background="w3s.png">
+		<br>
+		<div id="top">
+			<h4 id='title'>CS 106S Bioinformatics<br></h4>
+			<p id='header'>We're going to write a program that does efficient, genome-scale, gene association analysis. We'll be using precomputed gene expression matricies, which contain the gene expression profiles of our patients, and their corresponding medical conditions.</p>
+		</div>
+
+		<div id="app">
+			<input type="button" value="Calculate associations!" onclick="calcAssoc()" />
+			<input type="button" value="Debug" onclick="debug()" />
+			<p> Correlation Table: <p id="output_box">None</p></p>
+		<br>
+		<br>
+		<br>
+		<i>CS106S - Spring '19</i>
+		<br>
+		<br>
+		<br>
+		</div>
+	</body>
+</html>
